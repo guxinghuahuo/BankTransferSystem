@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>银行转账系统-个人信息</title>
+    <link rel="shortcut icon" href="http://blog.yxxwl.com/content/templates/loper/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54" style="width: 1200px">
+            <form id="pageMainForm" class="login100-form validate-form">
+                <span class="login100-form-title p-b-49">账户信息</span>
+                <br>
+                <span style="font-family: 宋体, Times, serif;font-size: 25px;font-weight: bold;text-align: center" th:text="'欢迎您，' + ${name} + '！'"></span>
+
+                <style type="text/css">
+                    table.imagetable {
+                        font-family: verdana,arial,sans-serif;
+                        font-size:18px;
+                        color:#333333;
+                        border-width: 1px;
+                        border-color: #999999;
+                        border-collapse: collapse;
+                        text-align: center;
+                        width: 80%;
+                        margin: auto;
+                    }
+                    table.imagetable th {
+                        background:#b5cfd2 url('images/cell-blue.jpg');
+                        border-width: 1px;
+                        padding: 8px;
+                        border-style: solid;
+                        border-color: #999999;
+                        text-align: center;
+                    }
+                    table.imagetable td {
+                        background:#dcddc0 url('images/cell-grey.jpg');
+                        border-width: 1px;
+                        padding: 8px;
+                        border-style: solid;
+                        border-color: #999999;
+                        text-align: center;
+                    }
+                </style>
+                <br><br>
+                <span style="font-family: 宋体, Times, serif;font-size: 20px;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您的个人信息如下：</span>
+                <br>
+
+                <table class="imagetable">
+
+                    <tr>
+                        <th>客户姓名</th>
+                        <th>身份证号</th>
+                        <th>性别</th>
+                        <th>年龄</th>
+                        <th>手机号</th>
+                    </tr>
+                    <tr>
+                        <td th:text = "${name}"></td>
+                        <td th:text = "${idcard}"></td>
+                        <td th:text = "${sex}"></td>
+                        <td th:text = "${age}"></td>
+                        <td th:text = "${phone}"></td>
+                    </tr>
+
+                </table>
+
+                <br><br>
+                <span style="font-family: 宋体, Times, serif;font-size: 20px;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您的银行卡信息如下：</span>
+                <br>
+                <table class="imagetable">
+
+                    <tr>
+                        <th>卡号</th>
+                        <th>余额</th>
+                        <th>所属银行</th>
+                    </tr>
+                    <tr th:each = "i:${bankcards}">
+                        <td th:text = "${i.cardnum}"></td>
+                        <td th:text = "${i.balance}"></td>
+                        <td th:text = "${i.bname}"></td>
+                    </tr>
+
+                </table>
+
+                <br><br>
+                <span style="font-family: 宋体, Times, serif;font-size: 20px;font-weight: bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您的银行卡交易明细如下：</span>
+                <br>
+                <table class="imagetable">
+
+                    <tr>
+                        <th>交易时间</th>
+                        <th>业务摘要</th>
+                        <th>汇款人卡号</th>
+                        <th>收款人卡号</th>
+                        <th>交易金额</th>
+                    </tr>
+                    <tr th:each = "i:${records}">
+                        <td th:text = "${i.time}"></td>
+                        <td th:text = "${i.note}"></td>
+                        <td th:text = "${i.scardnum}"></td>
+                        <td th:text = "${i.rcardnum}"></td>
+                        <td th:text = "${i.money}"></td>
+                    </tr>
+
+                </table>
+
+                <br><br>
+                <div class="container-login100-form-btn">
+                    <div>
+                        <div style="text-align: center">
+                            <label class="form-control-label" th:text="'共' + ${page} + '页，'"></label>
+                            <label class="form-control-label">跳转至第</label>
+                            <input type="text" id="pagenum" name="pagenum" style="width:20px">
+                            <label class="form-control-label">页</label>
+                        </div>
+                        <div style="text-align: center">
+                            <input id="go" class="btn btn-primary px-5 fullwidth" value="跳 转" type="submit">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input id="back" class="btn btn-primary px-5 fullwidth" value="返 回" type="button">
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-3.4.1.js"></script>
+<script src="js/jquery-form.js"></script>
+<script src="js/information.js"></script>
+</body>
+</html>
